@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sample2
+  labels:
+    app: sample2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample2
+  template:
+    metadata:
+      labels:
+        app: sample2
+    spec:
+      containers:
+      - name: sample2
+        imagePullPolicy: IfNotPresent
+        image: sample2:v1.0.0
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        env:
+          - name: ENV_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: "sample2"
+                key: secret

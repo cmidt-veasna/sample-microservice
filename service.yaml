@@ -1,0 +1,11 @@
+kind: Service
+metadata:
+  name: sample2
+  labels:
+    app: sample2
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+  selector:
+    app: sample2
